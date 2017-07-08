@@ -8,19 +8,13 @@
         "vscode": "^1.13.0"
     },
     "categories": [
-        "Other"
+        "Formatters"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "*"
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "commands": [
-            {
-                "command": "extension.sayHello",
-                "title": "Hello World"
-            }
-        ]
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
