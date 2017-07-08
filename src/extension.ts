@@ -9,21 +9,45 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "vscode-bs-ctrlchar-remover" is now active!');
+    console.log('Congratulations, your extension "vscode-erase-formatter" is now active!');
 
-    // The command has been defined in the package.json file
-    // Now provide the implementation of the command with  registerCommand
-    // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand('extension.sayHello', () => {
-        // The code you place here will be executed every time your command is executed
+    const editProvider = new RemoverEditProvider();
 
-        // Display a message box to the user
-        vscode.window.showInformationMessage('Hello World!');
-    });
-
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('*', editProvider));
+    context.subscriptions.push(vscode.languages.registerDocumentRangeFormattingEditProvider('*', editProvider));
 }
 
 // this method is called when your extension is deactivated
 export function deactivate() {
+}
+
+function fullDocumentRange(document: vscode.TextDocument): vscode.Range {
+    const lastLineId = document.lineCount - 1;
+    return new vscode.Range(0, 0, lastLineId, document.lineAt(lastLineId).text.length);
+}
+
+class RemoverEditProvider implements vscode.DocumentRangeFormattingEditProvider, vscode.DocumentFormattingEditProvider {
+    provideDocumentRangeFormattingEdits(
+        document: vscode.TextDocument,
+        range: vscode.Range,
+        options: vscode.FormattingOptions,
+        token: vscode.CancellationToken
+    ): vscode.TextEdit[] {
+        return [vscode.TextEdit.replace(range, format(document.getText(range)))];
+    }
+    provideDocumentFormattingEdits(
+        document: vscode.TextDocument,
+        options: vscode.FormattingOptions,
+        token: vscode.CancellationToken
+    ): vscode.TextEdit[] {
+        return [vscode.TextEdit.replace(fullDocumentRange(document), format(document.getText()))];
+    }
+}
+
+function format(text: string): string {
+    try {
+        return text.replace(/[\b]/gm, '');
+    } catch (e) {
+        return text;
+    }
 }
