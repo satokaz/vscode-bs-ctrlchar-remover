@@ -2,11 +2,12 @@
     "name": "vscode-bs-ctrlchar-remover",
     "displayName": "vscode-bs-ctrlchar-remover",
     "description": "",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "satokaz",
     "engines": {
         "vscode": "^1.13.0"
     },
+    "icon": "images/icon.png",
     "categories": [
         "Formatters"
     ],
