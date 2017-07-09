@@ -22,7 +22,7 @@ vscode Formatter for deleting backspace control character.
 * `"editor.formatOnSave": true` が設定されている場合は、保存時(⌘S)に発動
 * `"editor.formatOnType": true` が設定されている場合は、改行時か `;` を入力時に発動
 
-いずれも、気が付いたら消えているという感じです。ｖ
+いずれも、気が付いたら消えているという感じです。
 
 ## Tips
 
