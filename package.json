@@ -1,13 +1,21 @@
 {
     "name": "vscode-bs-ctrlchar-remover",
-    "displayName": "vscode-bs-ctrlchar-remover",
-    "description": "",
+    "displayName": "Remove backspace control character",
+    "description": "Formatter for removing backspace control character",
     "version": "0.0.2",
     "publisher": "satokaz",
     "engines": {
         "vscode": "^1.13.0"
     },
     "icon": "images/icon.png",
+    "homepage": "https://github.com/satokaz/vscode-bs-ctrlchar-remover",
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/satokaz/vscode-bs-ctrlchar-remover"
+    },
+    "bugs": {
+    "url": "https://github.com/satokaz/vscode-bs-ctrlchar-remover/issues"
+    },
     "categories": [
         "Formatters"
     ],

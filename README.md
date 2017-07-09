@@ -1,5 +1,7 @@
 # vscode-bs-ctrlchar-remover README
 
+vscode Formatter for deleting backspace control character.
+
 ## Features
 
 開いているドキュメントからバックスペース制御文字を取り除くフォーマッタです。
