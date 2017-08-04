@@ -22,7 +22,6 @@
     "activationEvents": [
         "*"
     ],
-    "enableProposedApi": true,
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
