@@ -2,7 +2,7 @@
     "name": "vscode-bs-ctrlchar-remover",
     "displayName": "Remove backspace control character",
     "description": "Formatter for removing backspace control character",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "publisher": "satokaz",
     "engines": {
         "vscode": "^1.13.0"
@@ -39,7 +39,7 @@
                     "type": [
                         "string"
                     ],
-                    "default": "[\\u0000|\\u0001|\\u0002|\\u0003|\\u0004|\\u0005|\\u0006|\\u0007|\\u0008|\\u000b|\\u000c|\\u000d|\\u000e|\\u000f|\\u0010|\\u0011|\\u0012|\\u0013|\\u0014|\\u0015|\\u0016|\\u0017|\\u0018|\\u0019|\\u001a|\\u001b|\\u001c|\\u001d|\\u001e|\\u001f|\u001c|\\u007f]",
+                    "default": "[\\u0008]",
                     "description": "User defined regular expression"
                 }
             }

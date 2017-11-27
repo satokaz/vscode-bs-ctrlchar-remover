@@ -1,5 +1,14 @@
 # Change Log
 
+* 0.0.6: 2017-11-27
+
+  - I apologize. Regular expression is incorrect and character strings such as '|' were also deleted.
+
+* 0.0.5: 2017-08-08
+
+  - Regular expression mistake
+  - Extensions using proposed API (enableProposedApi: true) can't be published to the Marketplace
+
 * 0.0.4:  2017-08-04
   - Add user-defined setting of pattern
 
