@@ -1,5 +1,9 @@
 # Change Log
 
+* 0.0.7: [2018-04-06]
+
+  - No code change. Add English README.md
+
 * 0.0.6: 2017-11-27
 
   - I apologize. Regular expression is incorrect and character strings such as '|' were also deleted.
@@ -13,7 +17,7 @@
   - Add user-defined setting of pattern
 
 * 0.0.3: 2017-07-24 
-  - Dealing with errors when documents are not open:  Cannot read property 'document' of undefined
+  - Dealing with errors when documents are not open: Cannot read property 'document' of undefined
 
 * 0.0.2: 2017-07-09 
   - Initial Release

@@ -1,72 +1,76 @@
 # vscode-bs-ctrlchar-remover README
 
+[Japanese README is here](https://github.com/satokaz/vscode-bs-ctrlchar-remover/blob/master/README_ja.md)
+
+
+
 vscode Formatter for deleting control character.
 
 ## Features
 
-開いているドキュメントに含まれている制御文字を削除するフォーマッタです。
-デフォルトで削除対象となる制御文字は、下記となります。
+A formatter that deletes the control characters contained in an open document. The control characters to be deleted by default are as follows:
 
 ```typescript
 /[\u0000]|[\u0001]|[\u0002]|[\u0003]|[\u0004]|[\u0005]|[\u0006]|[\u0007]|[\u0008]|[\u000b]|[\u000c]|[\u000d]|[\u000e]|[\u000f]|[\u0010]|[\u0011]|[\u0012]|[\u0013]|[\u0014]|[\u0015]|[\u0016]|[\u0017]|[\u0018]|[\u0019]|[\u001a]|[\u001b]|[\u001c]|[\u001d]|[\u001e]|[\u001f]|[\u001c]|[\u007f]/gm
 ```
-> * https://ja.wikipedia.org/wiki/制御文字
 
-このまま利用するか、ユーザー定義として設定された正規表現のパターンを利用することが可能です。
+It is also possible to define the regular expression pattern as a user.
 
-経緯としては、下記の Issue にある backspace 制御文字が紛れ込んでしまう問題に対応するために作成しました。
+This extenstion was created to cope with the problem that the backspace control character in the Issue below:
 
 * [Backspace can not erase the last one character during Chinese/Japanese IME conversion (macOS) · Issue #24981 · Microsoft/vscode](https://github.com/Microsoft/vscode/issues/24981)
-
-すでに、本家 chromium では、修正がマージされているので、8 月初旬にリリースされる vscode 1.15 あたりで直るかと思います(vscode 1.15 では、Electron 1.7.4 を採用予定)
-
 * [714771 - Two backspaces required to delete last character in webview input -  chromium - Monorail](https://bugs.chromium.org/p/chromium/issues/detail?id=714771)
 
-## 使い方
+## How to use
 
-拡張機能をインストールし、
+Install extensions,
 
-* `ドキュメントのフォーマット` コマンドを実行するか、
-* `"editor.formatOnSave": true` が設定されている場合は、保存時(⌘S)に発動
-* `"editor.formatOnType": true` が設定されている場合は、改行時か `;` を入力時に発動
+* Execute the `Format Document` command,
+* If `"editor.formatOnSave": true` is set, invoke on save (⌘S)
+* If `"editor.formatOnType": true` is set, invoked on `Enter (line break)` or `;` input
 
-いずれも、何かのアクションをトリガとし、制御文字を削除します。
+In either case, the action is triggered and the control character is deleted.
 
-### 手動での実行
+### Manual execution
 
-`ドキュメントのフォーマット` コマンドや `editor.formatOnSave`, `editor.formatOnType` は、`*FormattingEditProvide` が定義されているフォーマッタ全てを発動させてしまいます。
-そのため、これらを利用せずに単一の機能として利用したい場合は、`Remove control characters` コマンドを利用してください。
+The `Format Document` command and `editor.formatOnSave`, `editor.formatOnType` will trigger all formatter defined with `* FormattingEditProvide`.
 
-### ユーザー定義
+Therefore, if you want to use them as a single function without using them, please use the `Remove control characters` command.
 
-デフォルトの制御文字で問題がある場合は、`ctrlchar-remover.pattern` 設定を利用してカスタマイズすることが可能です。
-指定された正規表現のパターンに一致した文字を削除します。(`\u0008` と指定する場合は、`\\u0008` のように `\` によるエスケープが必要)
+### User defined
+
+If there is a problem with the default control character, you can customize it using the `ctrlchar-remover.pattern` setting.
+Delete the character that matches the pattern of the specified regular expression. (If you specify `\u0008`, you must escape with`\`, like `\\u0008`)
 
 * `ctrlchar-remover.pattern`: 
 
-backspace (\u0008) を削除対象とする例:
+Example deletion of `backspace (\u0008)` only:
 
 ```json
     "ctrlchar-remover.pattern": "[\\u0008]"
 ```
 
-backspace (\u0008) と Line Feed (\u000a) を削除対象とする例:
+Example of deletion of `backspace (\u0008)` and `Line Feed (\u000a)`:
 
 ```json
     "ctrlchar-remover.pattern": "[\\u0008]|[\\u000a]"
 ```
 
-当然、制御文字以外のパターンも指定できるのので注意してください。
+ATTENTION: Of course, you can also specify patterns other than control characters.
+
 
 ## Tips
 
-* `制御文字の切り替え (Toggle Control Characters)` コマンドか `表示 -> 制御文字の切り替え` で可視化することが可能
-* この拡張機能を使わないで、VS Code の基本機能で対応するには、`⌥⌘F` して検索に `[\b]` を入力し、`.* (正規表現を仕様する ⌥⌘R)` をクリックすることでドキュメント中のバックスペースを検索できます。さらに、`すべて置換(⌥⌘Enter)` を押すと削除してくれます
-* `"files.autoSave"` に `"afterDelay"` が設定されていると、自動保存時にフォーマットが適用されないことに注意
+* Can be visualized by `Toggle Control Characters` command or `View -> control character switching`.
+* To handle with the basic function of VS Code without using this extension, input `[\b]` for search by typing `⌥⌘F` and using `.* (⌥⌘R)`, To search backspaces control character in the document. In addition, you can delete it by pressing `Replace All (⌥⌘Enter)`.
+* if `afterDelay` is set as the value of `files.autoSave`, the format will not be applied during auto save.
+
+## Control character reference
+
 * https://en.wikipedia.org/wiki/Control_Pictures
-* https://unicode-table.com/en/
-* https://ja.wikipedia.org/wiki/制御文字
+* https://en.wikipedia.org/wiki/Control_character
 * https://en.wikipedia.org/wiki/C0_and_C1_control_codes
+* https://unicode-table.com/en/
 
 ## References
 
@@ -75,12 +79,12 @@ backspace (\u0008) と Line Feed (\u000a) を削除対象とする例:
 * [HookyQR/VSCodeBeautify](https://github.com/HookyQR/VSCodeBeautify)
 * [esbenp/prettier-vscode](https://github.com/esbenp/prettier-vscode)
 
-## formatOnSave および formatOnType を特定の言語モードにのみ適用する方法
+## How to apply `formatOnSave` and `formatOnType` to specific language modes only
 
-この拡張機能は、言語モードは指定されていないため、全ての言語モードに適用されます。
-特定の言語モードでのみ有効にしたい場合は、`"[language-mode]":{}` で囲んで設定することで、指定された `language-mode` にのみ有効になります。
+This extension is applied to all language modes because language mode is not specified.
+If you want to enable it only in a specific language mode, enclosing it with `"[language-mode]":{}` enables it only for the specified `language-mode`.
 
-下記は、Markdown モードにのみ適用する例です: 
+Below is an example that applies only to `Markdown` mode:
 
 ```json
     "[markdown]": {
@@ -91,9 +95,9 @@ backspace (\u0008) と Line Feed (\u000a) を削除対象とする例:
     }
 ```
 
-## formatOnType について
+## About `formatOnType` 
 
-formatOnType の発動にはトリガとなる文字入力が必要になる。
+In order for `formatOnType` to work, it is necessary to input a trigger character.
 
 > Yes - format on type only works on certain trigger characters. Extension define what those characters are, for instance TypeScript uses \n, ;, and }.
 
