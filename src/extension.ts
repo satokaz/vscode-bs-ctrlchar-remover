@@ -3,7 +3,6 @@
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
-    console.log('Congratulations, your extension "vscode-erase-formatter" is now active!');
     
     // console.log('bs =', count(vscode.window.activeTextEditor.document.getText()));
 
