@@ -70,7 +70,7 @@ ATTENTION: Of course, you can also specify patterns other than control character
 * https://en.wikipedia.org/wiki/Control_Pictures
 * https://en.wikipedia.org/wiki/Control_character
 * https://en.wikipedia.org/wiki/C0_and_C1_control_codes
-* https://unicode-table.com/en/
+* https://symbl.cc/en/
 
 ## References
 
